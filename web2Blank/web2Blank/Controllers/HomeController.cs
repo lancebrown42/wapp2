@@ -11,7 +11,12 @@ namespace web2Blank.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View();
+            Models.User u = new Models.User();
+            u.FirstName = "Chris";
+            u.LastName = "Johnson";
+            u.UserID = "chris.johnson";
+            u.Password = "Efje$";
+            return View(u);
         }
     }
 }

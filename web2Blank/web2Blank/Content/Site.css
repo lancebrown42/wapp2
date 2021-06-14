@@ -1,18 +1,93 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿h2 {
+    background-color: aliceblue;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+.section {
+    overflow: visible;
+    display: block;
+    clear: both;
+    margin: 0 0 1.0em 0;
+    overflow: auto;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.item {
+    display: inline;
+    float: left;
+    margin-right: 1.0em;
+    margin-bottom: 1.0em;
 }
 
+.user-property {
+    min-width: 120px;
+    display: inline-block;
+    border-radius: 0.5em;
+    border: 2px solid lightgray;
+    padding: 25px;
+    margin-bottom: 1em;
+    margin-right: 1em;
+}
+
+    .user-property:hover {
+        border: 2px solid black;
+    }
+
+#fname {
+    background-color: lightyellow;
+}
+
+#lname {
+    background-color: lightblue;
+}
+
+#userid {
+    background-color: lightcoral;
+}
+
+#pwd {
+    background-color: lightgreen;
+}
+
+/*button {
+    display: block;
+    min-width: 100px;
+    height: 40px;
+    margin-bottom: 0.25em;
+    padding: 0;
+}*/
+
+button, input[type=submit], input[type=button] {
+    cursor: pointer;
+    padding: 12px 30px 12px 30px;
+    background-color: #E4E4E4;
+    color: black;
+    border: 1px solid white;
+}
+
+.button-action {
+    background-color: #4CAF50;
+    color: white;
+}
+
+    .button-action:hover {
+        background-color: #2f6a31;
+    }
+
+.button-cancel {
+    background-color: #E4E4E4;
+    color: black;
+}
+
+    .button-cancel:hover {
+        background-color: #555;
+        color: white;
+    }
+
+.button-alert {
+    background-color: #FF0000;
+    color: white;
+}
+
+    .button-alert:hover {
+        background-color: #b30000;
+        color: white;
+    }

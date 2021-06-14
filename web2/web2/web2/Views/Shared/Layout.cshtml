@@ -1,0 +1,26 @@
+﻿@using System.Web.Optimization;
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>@ViewBag.Title</title>
+	@Scripts.Render("~/bundles/jquery")
+	<script src="https://kit.fontawesome.com/a75ff89abd.js" crossorigin="anonymous"></script>
+	@Styles.Render("~/Content/css")
+</head>
+<body>
+	<div id="site-header">
+		<i id="site-icon" class="fas fa-user-music"></i>
+		<span class="full-content">Tri-State Music Events</span>
+		<span class="mobile-content">3State <i class="fas fa-music"></i></span>
+	</div>
+	<div class="icon-bar">
+		<a id="icon-bar-home" href="~/Home/Index" title="Go to Home"><i class="fa fa-home"></i></a>
+		<a id="icon-bar-signin" href="~/Profile/SignIn" title="Sign In"><i class="fas fa-sign-in-alt"></i></a>
+		<a id="icon-bar-signup" href="~/Profile/SignUp" title="Sign Up"><i class="fas fa-user-plus"></i></a>
+	</div>
+	<div id="workspace">
+		@RenderBody()
+	</div>
+</body>
+</html>
