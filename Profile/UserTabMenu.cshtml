@@ -1,0 +1,19 @@
+﻿
+<div id="user-tab-menu" class="tab">
+	<button id="profile-events" class="tablinks" onclick="location.href = '@Url.Action("MyEvents", "Profile")';"><i class="fas fa-calendar-alt"></i> My Events</button>
+	@{
+		string strController = HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString();
+		string strView = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString();
+		long lngID = 0;
+		if (HttpContext.Current.Request.RequestContext.RouteData.Values["id"] != null) {
+			lngID = Convert.ToInt64(HttpContext.Current.Request.RequestContext.RouteData.Values["id"]);
+		}
+	}
+	@if (strController == "Profile" && strView == "MyEvents") {
+		<button id="profile-new-event" class="tablinks" onclick="location.href = '@Url.Action("Event", "Profile")';"><i class="far fa-plus-circle"></i> <span class="full-content" title="Add a new event">Add Event</span><span class="mobile-content" title="Add a new event">Add</span></button>
+	}
+
+	<button id="profile-gallery" class="tablinks" onclick="location.href = '@Url.Action("Gallery", "Profile")';"><i class="fal fa-images"></i> Gallery</button>
+	<button id="profile-index" class="tablinks" onclick="location.href = '@Url.Action("Index", "Profile")';"><i class="fas fa-user-circle"></i> Profile</button>
+</div>
+

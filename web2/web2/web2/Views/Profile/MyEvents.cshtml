@@ -1,0 +1,19 @@
+﻿@model web2.Models.User
+
+@{ 
+	ViewBag.Title = "My Events";
+}
+
+<h2>@ViewBag.Title</h2>
+@if (!Model.IsAuthenticated) {
+	@Html.Partial("NotAuthenticated")
+}
+else {
+	@Html.Partial("UserTabMenu")
+	<p>My events functionality coming soon.</p>
+}
+<script>
+	$(document).ready(function(){
+	SetActiveMenus('profile', 'events');
+	});
+</script>
