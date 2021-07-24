@@ -5,6 +5,10 @@
 	font-family: "Proxima Nova Extra Condensed",proxima-nova-extra-condensed,Helvetica,sans-serif;
 }
 
+.checked{
+	color: orange;
+}
+
 #site-header {
 	background-color: black;
 	color: white;
@@ -166,6 +170,18 @@ button i {
 	margin-bottom: 1em;
 }
 
+.field-width1{
+	width: 31.5em;
+}
+.field-width2 {
+	width: 20em;
+}
+.field-width3 {
+	width: 15em;
+}
+.field-width4 {
+	width: 9.5em;
+}
 #content-locked i {
 	color: red;
 }
@@ -269,6 +285,11 @@ button i {
 	margin-right: 2em;
 	margin-bottom: 2em;
 	position: relative;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+	-webkit-border-radius: 0.3em;
+	-moz-border-radius: 0.3em;
+	border-radius: 0.3em;
+	padding: 1em;
 }
 
 .user-image-container img {

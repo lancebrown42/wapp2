@@ -13,6 +13,16 @@
 		<button id="profile-new-event" class="tablinks" onclick="location.href = '@Url.Action("Event", "Profile")';"><i class="far fa-plus-circle"></i> <span class="full-content" title="Add a new event">Add Event</span><span class="mobile-content" title="Add a new event">Add</span></button>
 	}
 
+	@if (strController == "Profile" && strView == "Event" && lngID > 0) {
+		<button id="profile-event-gallery" class="tablinks" onclick="location.href = '@Url.Action("EventGallery", "Profile", new { @id = lngID })';"><i class="fal fa-images"></i> Event Gallery</button>
+	}
+
+	@if (strController == "Profile" && strView == "EventGallery" && lngID > 0) {
+		<button id="profile-event" class="tablinks" onclick="location.href = '@Url.Action("Event", "Profile", new { @id = lngID })';"><i class="fas fa-calendar-day"></i> Event</button>
+	}
+
+
+
 	<button id="profile-gallery" class="tablinks" onclick="location.href = '@Url.Action("Gallery", "Profile")';"><i class="fal fa-images"></i> Gallery</button>
 	<button id="profile-index" class="tablinks" onclick="location.href = '@Url.Action("Index", "Profile")';"><i class="fas fa-user-circle"></i> Profile</button>
 </div>

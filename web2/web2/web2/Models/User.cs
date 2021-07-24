@@ -18,6 +18,32 @@ namespace web2.Models
 		public ActionTypes ActionType = ActionTypes.NoType;
 		public Image UserImage;
 		public List<Image> Images;
+		public List<Event> Events = new List<Event>();
+
+		public List<Like> Likes;
+		public List<Rating> Ratings;
+
+		public bool DoesUserLike(Like.Types LikeType, long EventID)
+		{
+			try {
+				foreach (Like l in this.Likes) {
+					if (l.Type == LikeType && l.ID == EventID) return true;
+				}
+				return false;
+			}
+			catch (Exception) { return false; }
+		}
+
+		public byte GetUserRating(Rating.Types RatingType, long EventID)
+		{
+			try {
+				foreach (Rating r in this.Ratings) {
+					if (r.Type == RatingType && r.ID == EventID) return r.Rate;
+				}
+				return 0;
+			}
+			catch (Exception) { return 0; }
+		}
 
 
 
@@ -28,7 +54,14 @@ namespace web2.Models
 				return false;
 			}
 		}
-
+		public List<Event> GetEvents(long ID = 0)
+		{
+			try {
+				Database db = new Database();
+				return db.GetEvents(ID, this.UID);
+			}
+			catch (Exception e) { throw new Exception(e.Message); }
+		}
 		public sbyte AddGalleryImage(HttpPostedFileBase f)
 		{
 			try {

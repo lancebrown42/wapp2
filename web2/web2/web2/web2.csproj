@@ -117,8 +117,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Database.cs" />
+    <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\EventContent.cs" />
+    <Compile Include="Models\HomeContent.cs" />
     <Compile Include="Models\Image.cs" />
+    <Compile Include="Models\Like.cs" />
+    <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\Rating.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -135,6 +142,10 @@
     <Content Include="Views\Shared\UserTabMenu.cshtml" />
     <Content Include="Views\Profile\MyEvents.cshtml" />
     <Content Include="Views\Profile\Gallery.cshtml" />
+    <Content Include="Views\Profile\DeleteEvent.cshtml" />
+    <Content Include="Views\Profile\Event.cshtml" />
+    <Content Include="Views\Profile\EventGallery.cshtml" />
+    <Content Include="Views\Home\Event.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

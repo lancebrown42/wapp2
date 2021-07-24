@@ -1,0 +1,118 @@
+﻿@model web2.Models.EventContent
+
+@{
+	ViewBag.Title = @Model.Event.Title;
+}
+<style>
+	.mycanvas-follow {
+		color: #4CAF50;
+	}
+
+	.like-link:hover {
+		cursor: pointer;
+	}
+
+	.like-link {
+		text-decoration: none;
+		margin-right: 0.75em;
+	}
+
+	.rate-star:hover {
+		cursor: pointer;
+	}
+
+	.bold {
+		font-weight: bold;
+	}
+</style>
+
+<h2>@ViewBag.Title</h2>
+
+<div id="user-profile-image">
+	@if (Model.Event.EventImage != null) {
+		if (Model.Event.EventImage.ImageID > 0) {
+			<div class="user-profile-image-container">
+				<img class="user-profile-thumbnail" src="@string.Concat("data:Image/",
+							Model.Event.EventImage.FileExtension, ";base64,",
+							Model.Event.EventImage.BytesBase64)" />
+			</div>
+		}
+	}
+</div>
+
+<div id="user-profile-data">
+	@using (Html.BeginForm(FormMethod.Post)) {
+		<div class="section">
+			<button class="button-cancel" id="btnClose" name="btnSubmit" value="close"><i class='fa fa-times'></i> Close</button>
+		</div>
+
+		if (Model.User.IsAuthenticated) {
+			<div class="section">
+				<div>
+					@{
+						string strLikeClass = "fal"; //this is the "not currently liked" class
+						if (Model.User.UID == Model.Event.User.UID) {
+							<i class="fal fa-thumbs-up" title="This is your event. Like is disabled."></i> <span style="font-size: 0.8em;">(<label id="like-count-@Model.Event.ID">@Model.Event.TotalLikes</label>)</span>
+						}
+						else {
+							if (Model.User.DoesUserLike(web2.Models.Like.Types.Event, Model.Event.ID)) {
+								strLikeClass = "fas"; //this is the "like" class
+							}
+							<a class="like-link" id="like-user-a-@Model.Event.ID" href="javascript:void(0);" onclick="toggleEventLike('event', @Model.User.UID, @Model.Event.ID);">
+								<i id="like-user-i-@Model.Event.ID" class="mycanvas-follow @strLikeClass fa-thumbs-up"></i> <span style="font-size: 0.8em;">(<label id="like-count-@Model.Event.ID">@Model.Event.TotalLikes</label>)</span>
+							</a>
+						}
+
+						byte rate = Model.User.GetUserRating(web2.Models.Rating.Types.Event, Model.Event.ID);
+
+						string[] rates = new string[5];
+						if (rate > 0) { rates[0] = "checked"; }
+						if (rate > 1) { rates[1] = "checked"; }
+						if (rate > 2) { rates[2] = "checked"; }
+						if (rate > 3) { rates[3] = "checked"; }
+						if (rate > 4) { rates[4] = "checked"; }
+					}
+					@if (Model.User.UID != Model.Event.User.UID) { //don't allow rating your own events
+						<span id="rate1" onclick="rateEvent(@Model.User.UID, @Model.Event.ID, 1);" class="fa fa-star @rates[0] rate-star"></span>
+						<span id="rate2" onclick="rateEvent(@Model.User.UID, @Model.Event.ID, 2);" class="fa fa-star @rates[1] rate-star"></span>
+						<span id="rate3" onclick="rateEvent(@Model.User.UID, @Model.Event.ID, 3);" class="fa fa-star @rates[2] rate-star"></span>
+						<span id="rate4" onclick="rateEvent(@Model.User.UID, @Model.Event.ID, 4);" class="fa fa-star @rates[3] rate-star"></span>
+						<span id="rate5" onclick="rateEvent(@Model.User.UID, @Model.Event.ID, 5);" class="fa fa-star @rates[4] rate-star"></span>
+						if (rate > 0) {<span>(your rating)</span>}
+					}
+				</div>
+			</div>
+		}
+	}
+	<div class="bold">Title</div>
+	<p>@Model.Event.Title</p>
+
+	<div class="bold">Start Date/Time</div>
+	<p>@Model.Event.Start</p>
+
+	<div class="bold">End Date/Time</div>
+	<p>@Model.Event.End</p>
+
+	<div class="bold">Description</div>
+	<p>@Model.Event.Description</p>
+
+	<h3>Location</h3>
+
+	<div class="bold">Location Title</div>
+	<p>@Model.Event.Location.Title</p>
+
+	<div class="bold">Location Description</div>
+	<p>@Model.Event.Location.Description</p>
+
+	<div class="bold">Address</div>
+	<p>@Model.Event.Location.Address.FullAddress</p>
+
+	<div class="bold">Host</div>
+	<p>@Model.User.FirstName @Model.User.LastName (@Model.User.Email)</p>
+</div>
+
+<script>
+	$(document).ready(function () {
+		SetActiveMenus('home');
+	});
+</script>

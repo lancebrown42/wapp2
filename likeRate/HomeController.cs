@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 
-namespace web2.Controllers
-{
-	public class HomeController : Controller
-	{
-		public ActionResult Index()
-		{
+namespace web2.Controllers {
+    public class HomeController : Controller {
+        public ActionResult Index() {
 			Models.Database db = new Models.Database();
 			Models.HomeContent h = new Models.HomeContent();
 
@@ -24,8 +21,7 @@ namespace web2.Controllers
 			return View(h);
 		}
 
-		public ActionResult Event()
-		{
+		public ActionResult Event() {
 			Models.EventContent ec = new Models.EventContent();
 			Models.Database db = new Models.Database();
 
@@ -45,15 +41,13 @@ namespace web2.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult Event(FormCollection col)
-		{
+		public ActionResult Event(FormCollection col) {
 			//close button
 			return RedirectToAction("Index");
 		}
 
 		[HttpPost]
-		public JsonResult ToggleEventLike(long UID, long ID)
-		{
+		public JsonResult ToggleEventLike(long UID, long ID) {
 			try {
 				Models.Database db = new Models.Database();
 				int intReturn = 0;
@@ -66,8 +60,7 @@ namespace web2.Controllers
 		}
 
 		[HttpPost]
-		public JsonResult RateEvent(long UID, long ID, long Rating)
-		{
+		public JsonResult RateEvent(long UID, long ID, long Rating) {
 			try {
 				Models.Database db = new Models.Database();
 				int intReturn = 0;

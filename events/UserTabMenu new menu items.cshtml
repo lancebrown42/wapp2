@@ -1,0 +1,9 @@
+
+	@if (strController == "Profile" && strView == "Event" && lngID > 0) {
+		<button id="profile-event-gallery" class="tablinks" onclick="location.href = '@Url.Action("EventGallery", "Profile", new { @id = lngID })';"><i class="fal fa-images"></i> Event Gallery</button>
+	}
+
+	@if (strController == "Profile" && strView == "EventGallery" && lngID > 0) {
+		<button id="profile-event" class="tablinks" onclick="location.href = '@Url.Action("Event", "Profile", new { @id = lngID })';"><i class="fas fa-calendar-day"></i> Event</button>
+	}
+
