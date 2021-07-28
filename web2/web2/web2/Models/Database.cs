@@ -8,6 +8,52 @@ namespace web2.Models
 {
 	public class Database
 	{
+		public Owner Owner()
+		{
+
+			try {
+				SqlConnection cn = new SqlConnection();
+				if (!GetDBConnection(ref cn)) throw new Exception("Database did not connect");
+				SqlDataAdapter da = new SqlDataAdapter("OWNER", cn);
+				DataSet ds;
+				Owner owner = null;
+
+				da.SelectCommand.CommandType = CommandType.StoredProcedure;
+				;
+
+				try {
+					ds = new DataSet();
+					da.Fill(ds);
+					if (ds.Tables[0].Rows.Count > 0) {
+						owner = new Owner();
+						DataRow dr = ds.Tables[0].Rows[0];
+						owner.UserID = "owner";
+						owner.FirstName = (string)dr["FirstName"];
+						owner.LastName = (string)dr["LastName"];
+						owner.Email = (string)dr["Email"];
+						Image i = new Image();
+						i.ImageID = (long)dr["UserImageID"];
+						i.ImageData = (byte[])dr["Image"];
+						i.FileName = (string)dr["FileName"];
+						i.Size = (long)dr["ImageSize"];
+						if (dr["PrimaryImage"].ToString() == "Y")
+							i.Primary = true;
+						else
+							i.Primary = false;
+						owner.UserImage = i;
+					}
+				}
+				catch (Exception ex) { throw new Exception(ex.Message); }
+				finally {
+					CloseDBConnection(ref cn);
+				}
+				return owner; 
+			}
+			catch (Exception ex) { throw new Exception(ex.Message); }
+
+
+		}
+
 		public int RateEvent(long UID, long ID, long Rating)
 		{
 			try {
@@ -786,6 +832,8 @@ namespace web2.Models
 			}
 			catch (Exception ex) { throw new Exception(ex.Message); }
 		}
+
+
 	}
 }
 ///////////////////////////////////////////////////////////////////////////////

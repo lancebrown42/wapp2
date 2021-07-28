@@ -1,0 +1,40 @@
+﻿@model web2.Models.Owner
+@{
+    ViewBag.Title = "About Us";
+}
+
+<h2>@ViewBag.Title</h2>
+<p>Oh boy, the training wheels are off now. This is not Angular.</p>
+<p>No one can come to the phone right now, please leave an email after the beep</p>
+
+<style>
+	.user-image-container{height: unset; display: block;}
+	
+</style>
+
+<div style="width: 200px">
+
+<div class="user-image-container">
+	<img class="user-profile-thumbnail" src="@string.Concat("data:Image/",
+							Model.UserImage.FileExtension, ";base64,",
+							Model.UserImage.BytesBase64)" />
+	<h3>@Model.FirstName @Model.LastName</h3>
+	<a href="mailto: @Model.Email">@Model.Email</a>
+</div>
+	
+
+<div>
+
+@using (Html.BeginForm(FormMethod.Post)) {
+	<button class="button-cancel" id="btnCancel" name="btnSubmit" value="close">Close</button>
+	<button class="button-action" id="btnMore" name="btnSubmit" value="more">More</button>
+}
+</div>
+</div>
+
+
+	<script>
+	$(document).ready(function () {
+		SetActiveMenus('aboutus', 'index');
+	});
+	</script>

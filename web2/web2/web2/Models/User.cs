@@ -97,6 +97,17 @@ namespace web2.Models
 			}
 			catch (Exception ex) { throw new Exception(ex.Message); }
 		}
+		//public Owner GetOwner()
+		//{
+		//	Owner owner = new Owner();
+		//	Models.Database db = new Database();
+		//	owner = db.Owner();
+
+		//	return owner;
+
+
+
+		//}
 
 
 
