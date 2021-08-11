@@ -329,3 +329,55 @@ button i {
 	color: red;
 	z-index: 1;
 }
+
+#report-ellipsis {
+	vertical-align: middle;
+	margin-left: 1em;
+}
+
+#report-panel {
+	display: none;
+	margin-top: 1.5em;
+	margin-bottom: 0.5em;
+	padding-top: 0.25em;
+	padding-bottom: 0.25em;
+	padding-left: 0.75em;
+	padding-right: 0.75em;
+	background-color: lightyellow;
+	border: 1px solid darkgrey;
+	-webkit-border-radius: 0.3em;
+	-moz-border-radius: 0.3em;
+	border-radius: 0.3em;
+}
+
+#report-close {
+	color: black;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+	padding-top: 0.25em;
+	margin-left: 0.25em;
+}
+
+#report-close:hover, #report-ellipsis:hover {
+	color: red;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+#report-submitting, #report-submitted, #report-failed {
+	display: none;
+}
+
+#report-failed {
+	color: red;
+}
+
+.margin-right {
+	margin-right: 0.25em;
+}
+
+#fa-report-icon {
+	color: red;
+}
+

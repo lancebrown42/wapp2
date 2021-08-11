@@ -44,6 +44,29 @@
 	@using (Html.BeginForm(FormMethod.Post)) {
 		<div class="section">
 			<button class="button-cancel" id="btnClose" name="btnSubmit" value="close"><i class='fa fa-times'></i> Close</button>
+
+		@if (Model.User.IsAuthenticated) {
+			<span id="report-ellipsis" title="Report"><i class="far fa-ellipsis-v fa-2x ellipsis"></i></span>
+			<div id="report-panel">
+				<div id="report-content">
+					<p>
+						<i id="fa-report-icon" class="fas fa-info-circle fa-2x margin-right"></i>
+						Report this as:
+						<select id="report-list" name="lstReport">
+							<option value="0">(select)</option>
+							<option value="@Convert.ToInt32(web2.Models.Report.ProblemTypes.MisleadingOrScam)">@web2.Models.Report.GetProblemText(web2.Models.Report.ProblemTypes.MisleadingOrScam)</option>
+							<option value="@Convert.ToInt32(web2.Models.Report.ProblemTypes.SexuallyInappropriate)">@web2.Models.Report.GetProblemText(web2.Models.Report.ProblemTypes.SexuallyInappropriate)</option>
+							<option value="@Convert.ToInt32(web2.Models.Report.ProblemTypes.Offensive)">@web2.Models.Report.GetProblemText(web2.Models.Report.ProblemTypes.Offensive)</option>
+							<option value="@Convert.ToInt32(web2.Models.Report.ProblemTypes.Violent)">@web2.Models.Report.GetProblemText(web2.Models.Report.ProblemTypes.Violent)</option>
+							<option value="@Convert.ToInt32(web2.Models.Report.ProblemTypes.Spam)">@web2.Models.Report.GetProblemText(web2.Models.Report.ProblemTypes.Spam)</option>
+						</select>
+						<span id="report-close" title="Close this panel">&times;</span>
+					</p>
+				</div>
+				<div id="report-submitted"><p><i class="fal fa-check fa-2x margin-right"></i> Report Submitted</p></div>
+				<div id="report-failed"><p><i class="far fa-exclamation-triangle fa-2x margin-right"></i> Report failed. Try again later.</p></div>
+			</div>
+		}
 		</div>
 
 		if (Model.User.IsAuthenticated) {
@@ -114,5 +137,19 @@
 <script>
 	$(document).ready(function () {
 		SetActiveMenus('home');
+		$("#report-ellipsis").click(function () {
+			$("#report-panel").fadeToggle("medium");
+		});
+		$("#report-close").click(function () {
+			$("#report-failed").hide();
+			$("#report-panel").fadeToggle("medium");
+		});
+		$("#report-list").change(function () {
+			if ($("#report-list").val() != '0') {
+				$("#report-submitting").show();
+				SaveReport(@Model.User.UID, @Model.Event.ID, $("#report-list").val());
+			}
+			
+		});
 	});
 </script>

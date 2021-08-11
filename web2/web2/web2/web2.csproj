@@ -128,6 +128,7 @@
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Owner.cs" />
     <Compile Include="Models\Rating.cs" />
+    <Compile Include="Models\Report.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
